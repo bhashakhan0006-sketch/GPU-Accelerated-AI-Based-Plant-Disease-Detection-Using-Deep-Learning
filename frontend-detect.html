@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detect Plant Disease</title>
+
+    <link rel="stylesheet" href="frontend-css-style.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header>
+
+    <div class="logo">
+        🌿 Plant Disease Detection
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="frontend-index.html">Home</a></li>
+            <li><a href="frontend-about.html">About</a></li>
+            <li><a href="frontend-detect.html" class="active">Detect Disease</a></li>
+            <li><a href="frontend-suggestion.html">Suggestions</a></li>
+            <li><a href="frontend-contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+</header>
+
+<!-- ================= PAGE TITLE ================= -->
+
+<section class="page-title">
+
+    <h1>Plant Disease Detection</h1>
+
+    <p>
+        Upload a plant leaf image to detect whether it is healthy or diseased.
+    </p>
+
+</section>
+
+<!-- ================= DETECTION CARD ================= -->
+
+<section class="detect-section">
+
+<div class="detect-card">
+
+<h2>Upload Leaf Image</h2>
+
+<form id="uploadForm">
+
+    <input
+        type="file"
+        id="imageInput"
+        accept="image/*"
+        required
+    >
+
+    <br><br>
+
+    <img
+        id="preview"
+        src=""
+        alt="Image Preview"
+        style="display:none; width:300px; border-radius:10px;"
+    >
+
+    <br><br>
+
+    <button
+        type="submit"
+        class="btn"
+    >
+        Detect Disease
+    </button>
+    &nbsp;
+    <button
+        type="button"
+        class="btn"
+        style="background: #4a5568;"
+        onclick="configureApiUrl()"
+    >
+        ⚙️ Server URL
+    </button>
+
+</form>
+
+</div>
+
+</section>
+
+<!-- ================= RESULT ================= -->
+
+<section class="result-section">
+
+<div class="result-card">
+
+<h2>Prediction Result</h2>
+
+<p>
+<strong>Disease :</strong>
+<span id="disease">Waiting...</span>
+</p>
+
+<p>
+<strong>Confidence :</strong>
+<span id="confidence">--</span>
+</p>
+
+<p>
+<strong>Status :</strong>
+<span id="status">--</span>
+</p>
+
+<!-- ASK SUGGESTION BUTTON & CONTAINER -->
+<div id="suggestionBox" style="display:none; margin-top:25px; padding-top:20px; border-top:2px solid #e0e0e0;">
+    <button id="askSuggestionBtn" class="btn" style="background:#ff9800; width:100%; font-size:17px; font-weight:bold; margin-bottom:15px;" onclick="goToSuggestionsPage()">
+        💡 Ask Suggestion / Treatment Advice
+    </button>
+
+    <div id="inlineRemedy" style="background:#f9fdf9; padding:18px; border-radius:10px; border-left:5px solid #4caf50; display:none;">
+        <h4 style="color:#2e7d32; margin-bottom:8px;"><i class="fa-solid fa-lightbulb"></i> Treatment Highlights:</h4>
+        <p id="inlineOrganic" style="font-size:15px; margin-bottom:6px;"><strong>🌿 Organic:</strong> <span>--</span></p>
+        <p id="inlineChemical" style="font-size:15px; margin-bottom:6px;"><strong>🧪 Chemical:</strong> <span>--</span></p>
+        <p id="inlinePrevention" style="font-size:15px; margin-bottom:10px;"><strong>🛡️ Prevention:</strong> <span>--</span></p>
+        <a id="fullSuggestionLink" href="frontend-suggestion.html" style="color:#1b5e20; font-weight:bold; text-decoration:underline;">View Complete Overcome Guide &rarr;</a>
+    </div>
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= LOADING ================= -->
+
+<div
+id="loading"
+style="display:none; text-align:center; margin:30px;">
+
+<h3>
+
+Analyzing Image...
+
+</h3>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<p>
+
+© 2026 AI Plant Disease Detection
+
+</p>
+
+</footer>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+const imageInput = document.getElementById("imageInput");
+const preview = document.getElementById("preview");
+
+if (imageInput) {
+    imageInput.addEventListener("change", function(){
+        const file = this.files[0];
+        if (file) {
+            preview.src = URL.createObjectURL(file);
+            preview.style.display = "block";
+        }
+    });
+}
+
+function configureApiUrl() {
+    const current = localStorage.getItem("backend_url") || "http://127.0.0.1:5000/predict";
+    const newUrl = prompt("Enter Backend API Endpoint (Local or Google Colab Ngrok URL):", current);
+    if (newUrl !== null && newUrl.trim() !== "") {
+        localStorage.setItem("backend_url", newUrl.trim());
+        alert("API Endpoint set to:\n" + newUrl.trim());
+    }
+}
+</script>
+<script src="script.js"></script>
+
+</body>
+</html>

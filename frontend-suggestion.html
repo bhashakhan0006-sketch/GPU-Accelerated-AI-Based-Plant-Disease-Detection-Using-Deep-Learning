@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Treatment Suggestions</title>
+
+    <link rel="stylesheet" href="frontend-css-style.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header>
+
+    <div class="logo">
+        🌿 Plant Disease Detection
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="frontend-index.html">Home</a></li>
+            <li><a href="frontend-about.html">About</a></li>
+            <li><a href="frontend-detect.html">Detect Disease</a></li>
+            <li><a href="frontend-suggestion.html" class="active">Suggestions</a></li>
+            <li><a href="frontend-contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+</header>
+
+<!-- ================= PAGE TITLE ================= -->
+
+<section class="page-title">
+
+    <h1>Plant Disease Overcome Suggestions</h1>
+
+    <p>
+        Expert treatment advice, organic remedies, chemical options, and preventive care to protect your crops.
+    </p>
+
+</section>
+
+<!-- ================= SUGGESTION SELECTOR ================= -->
+
+<section class="detect-section">
+
+<div class="detect-card" style="max-width: 800px; width:95%;">
+
+<h2>Select or Search Plant Disease</h2>
+
+<div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:20px;">
+
+    <select id="diseaseSelect" class="input-field" style="padding:12px; font-size:16px; border-radius:8px; border:2px solid #4caf50; flex:1; min-width:250px;">
+        <option value="">-- Choose a Disease --</option>
+        <option value="Tomato Early Blight">Tomato Early Blight</option>
+        <option value="Tomato Late Blight">Tomato Late Blight</option>
+        <option value="Apple Scab">Apple Scab</option>
+        <option value="Corn Rust">Corn Rust</option>
+        <option value="Grape Black Rot">Grape Black Rot</option>
+        <option value="Potato Early Blight">Potato Early Blight</option>
+        <option value="Potato Late Blight">Potato Late Blight</option>
+        <option value="Healthy Leaf">Healthy Leaf Care</option>
+    </select>
+
+    <input type="text" id="customDiseaseInput" placeholder="Or type disease name..." style="padding:12px; font-size:16px; border-radius:8px; border:2px solid #4caf50; flex:1; min-width:200px;">
+
+    <button id="getSuggestionBtn" class="btn" onclick="fetchSelectedSuggestion()">
+        💡 Get Advice
+    </button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= TREATMENT ADVICE CARDS ================= -->
+
+<section class="result-section">
+
+<div class="result-card" id="suggestionCard" style="max-width:850px; width:95%;">
+
+<h2 id="targetDiseaseTitle">Selected Disease: <span style="color:#2e7d32;">Tomato Early Blight</span></h2>
+
+<div class="suggestion-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:20px; margin-top:25px;">
+
+    <div class="advice-box" style="background:#f1f8e9; padding:20px; border-left:6px solid #4caf50; border-radius:8px;">
+        <h3 style="color:#1b5e20; margin-bottom:10px;"><i class="fa-solid fa-seedling"></i> 🌿 Organic & Natural Treatment</h3>
+        <p id="organicText">Prune off infected lower leaves immediately. Apply organic copper-based fungicide or neem oil solution every 7 to 10 days.</p>
+    </div>
+
+    <div class="advice-box" style="background:#fff3e0; padding:20px; border-left:6px solid #ff9800; border-radius:8px;">
+        <h3 style="color:#e65100; margin-bottom:10px;"><i class="fa-solid fa-flask"></i> 🧪 Chemical Remedy</h3>
+        <p id="chemicalText">Spray Chlorothalonil or Mancozeb fungicide at the first sign of leaf spots following package safety guidelines.</p>
+    </div>
+
+    <div class="advice-box" style="background:#e3f2fd; padding:20px; border-left:6px solid #2196f3; border-radius:8px;">
+        <h3 style="color:#0d47a1; margin-bottom:10px;"><i class="fa-solid fa-shield-halved"></i> 🛡️ Preventive Care</h3>
+        <p id="preventionText">Rotate tomato crops every 2-3 years. Mulch soil surface to prevent fungal spores from splashing onto lower leaves.</p>
+    </div>
+
+    <div class="advice-box" style="background:#e8f5e9; padding:20px; border-left:6px solid #2e7d32; border-radius:8px;">
+        <h3 style="color:#1b5e20; margin-bottom:10px;"><i class="fa-solid fa-droplet"></i> 💧 Watering & Soil Tips</h3>
+        <p id="careText">Avoid overhead watering; use drip irrigation to keep foliage completely dry during early morning hours.</p>
+    </div>
+
+</div>
+
+<div style="text-align:center; margin-top:30px;">
+    <a href="frontend-detect.html" class="btn" style="background:#2e7d32;">
+        🔍 Detect Another Plant Image
+    </a>
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<p>
+© 2026 AI Plant Disease Detection System
+</p>
+
+</footer>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+const LOCAL_KNOWLEDGE = {
+    "tomato early blight": {
+        "disease": "Tomato Early Blight",
+        "organic": "Prune off infected lower leaves immediately. Apply organic copper-based fungicide or neem oil solution every 7 to 10 days.",
+        "chemical": "Spray Chlorothalonil or Mancozeb fungicide at the first sign of leaf spots following package safety guidelines.",
+        "prevention": "Rotate tomato crops every 2-3 years. Mulch soil surface to prevent fungal spores from splashing onto lower leaves.",
+        "care": "Avoid overhead watering; use drip irrigation to keep foliage completely dry during early morning hours."
+    },
+    "tomato late blight": {
+        "disease": "Tomato Late Blight",
+        "organic": "Remove and destroy severely affected stems/leaves immediately. Spray copper soap fungicide as a preventive organic barrier.",
+        "chemical": "Apply systemic fungicides containing Metalaxyl, Dimethomorph, or Chlorothalonil immediately upon detection.",
+        "prevention": "Plant blight-resistant tomato varieties. Space plants at least 3 feet apart for maximum airflow.",
+        "care": "Destroy all infected crop debris at the end of the season to eliminate overwintering spores."
+    },
+    "apple scab": {
+        "disease": "Apple Scab",
+        "organic": "Rake and burn fallen infected autumn leaves. Apply liquid lime-sulfur or neem oil early in the spring bud stage.",
+        "chemical": "Spray Myclobutanil, Captan, or Difenoconazole fungicides during early green tip flower bud stages.",
+        "prevention": "Prune apple tree canopy annually to increase sunlight penetration and air circulation.",
+        "care": "Maintain proper tree nutrition; avoid excessive nitrogen fertilizer which promotes vulnerable soft leaf growth."
+    },
+    "corn rust": {
+        "disease": "Corn Rust",
+        "organic": "Apply sulfur or copper dust early in infection stage. Plant early in the season to avoid peak spore rust season.",
+        "chemical": "Use foliar fungicides such as Azoxystrobin, Pyraclostrobin, or Propiconazole if rust covers over 5% of leaf area.",
+        "prevention": "Plant rust-resistant hybrid corn varieties. Practice strict annual crop rotation.",
+        "care": "Keep field perimeter free of wild grassy weed hosts where rust spores proliferate."
+    },
+    "grape black rot": {
+        "disease": "Grape Black Rot",
+        "organic": "Remove and destroy all dried black mummy grapes. Spray organic copper or sulfur sprays pre-bloom.",
+        "chemical": "Apply Myclobutanil, Mancozeb, or Captan starting at 1-inch shoot growth until 4 weeks post-bloom.",
+        "prevention": "Prune vines for open canopy structure to allow rapid drying of leaves after rain.",
+        "care": "Ensure full sunlight exposure for grape clusters and clear under-vine weed competition."
+    },
+    "potato early blight": {
+        "disease": "Potato Early Blight",
+        "organic": "Apply organic neem oil or copper sprays. Prune low-hanging yellowing leaves touched by soil.",
+        "chemical": "Spray Chlorothalonil, Mancozeb, or Azoxystrobin at 7-14 day intervals when weather is warm and moist.",
+        "prevention": "Practice a 3-4 year crop rotation away from Solanaceous crops (tomatoes, peppers, eggplants).",
+        "care": "Ensure optimal potassium and nitrogen fertility to maintain strong foliar vigor."
+    },
+    "healthy": {
+        "disease": "Healthy Leaf",
+        "organic": "Your plant is healthy! Continue using compost tea or organic liquid seaweed to promote robust root immunity.",
+        "chemical": "No chemical treatment needed! Maintain healthy balanced fertilizer application.",
+        "prevention": "Keep monitoring leaves weekly. Maintain consistent watering and clean garden tools.",
+        "care": "Ensure full recommended sunlight and good soil drainage."
+    }
+};
+
+function renderAdvice(data) {
+    document.getElementById("targetDiseaseTitle").innerHTML = 'Selected Disease: <span style="color:#2e7d32;">' + (data.disease || "Plant Disease") + '</span>';
+    document.getElementById("organicText").innerHTML = data.organic || "Prune infected leaves and spray neem oil or copper spray.";
+    document.getElementById("chemicalText").innerHTML = data.chemical || "Consult local extension for broad-spectrum fungicides like Chlorothalonil.";
+    document.getElementById("preventionText").innerHTML = data.prevention || "Rotate crops every 2-3 years and maintain plant spacing.";
+    document.getElementById("careText").innerHTML = data.care || "Water directly at soil root level to keep foliage dry.";
+}
+
+async function fetchSuggestionFor(diseaseName) {
+    const backendUrl = localStorage.getItem("backend_url") || "http://127.0.0.1:5000/predict";
+    const suggestEndpoint = backendUrl.replace("/predict", "/suggest");
+
+    try {
+        const response = await fetch(suggestEndpoint + "?disease=" + encodeURIComponent(diseaseName));
+        if (response.ok) {
+            const data = await response.json();
+            renderAdvice(data);
+            return;
+        }
+    } catch (e) {
+        console.log("Using local knowledge base fallback:", e);
+    }
+
+    // Fallback search in local knowledge base
+    const dLower = diseaseName.lower ? diseaseName.lower() : String(diseaseName).toLowerCase();
+    for (let key in LOCAL_KNOWLEDGE) {
+        if (dLower.includes(key)) {
+            renderAdvice(LOCAL_KNOWLEDGE[key]);
+            return;
+        }
+    }
+
+    renderAdvice({
+        disease: diseaseName,
+        organic: `Prune affected leaves of ${diseaseName}. Spray organic neem oil or copper fungicide every 7 days.`,
+        chemical: `Apply suitable targeted broad-spectrum fungicide for ${diseaseName} following product label instructions.`,
+        prevention: "Ensure good air circulation, rotate crops regularly, and keep garden tools sanitized.",
+        care: "Water directly at root level to keep leaves dry and boost plant immunity with organic fertilizer."
+    });
+}
+
+function fetchSelectedSuggestion() {
+    const selectVal = document.getElementById("diseaseSelect").value;
+    const customVal = document.getElementById("customDiseaseInput").value.trim();
+    const query = customVal || selectVal || "Tomato Early Blight";
+    fetchSuggestionFor(query);
+}
+
+// Auto-check URL parameters (e.g. ?disease=Tomato%20Early%20Blight)
+window.addEventListener("DOMContentLoaded", () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const diseaseParam = urlParams.get("disease");
+    if (diseaseParam) {
+        document.getElementById("customDiseaseInput").value = diseaseParam;
+        fetchSuggestionFor(diseaseParam);
+    } else {
+        fetchSuggestionFor("Tomato Early Blight");
+    }
+});
+</script>
+
+</body>
+</html>
